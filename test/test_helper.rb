@@ -1,9 +1,8 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
 require 'fluent/test'
 
 require 'fluent/plugin/parser_rabbitmq_json_trace'
-
-require 'minitest/autorun'
 
 class Hash
   def corresponding_proxies

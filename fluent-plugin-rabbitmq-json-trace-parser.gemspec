@@ -16,9 +16,11 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^test/}) }
   spec.require_paths = %w(lib)
 
+  spec.required_ruby_version = '>= 1.9.3'
+
   spec.add_runtime_dependency 'fluentd', '>= 0.10.58'
 
   spec.add_development_dependency 'bundler', '~> 1.10'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'minitest'
+  spec.add_development_dependency 'test-unit', '~> 3.1.4'
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RabbitMQJSONTraceParserTest < Minitest::Test
+class RabbitMQJSONTraceParserTest < ::Test::Unit::TestCase
   def setup
     @parser = Fluent::TextParser::RabbitMQJSONTraceParser.new
     @parser.configure({})
