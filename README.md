@@ -48,6 +48,10 @@ You can use two values for `payload_type`:
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
+## Thanks
+
+This gem was made as a part of my regular job in [Excursiopedia](https://www.excursiopedia.com), we successfully debuged some message passing quirks with Fluentd and this small gem.
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
