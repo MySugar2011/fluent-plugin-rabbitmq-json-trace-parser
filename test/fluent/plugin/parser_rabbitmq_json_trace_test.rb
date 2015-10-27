@@ -30,7 +30,7 @@ class RabbitMQJSONTraceParserTest < ::Test::Unit::TestCase
   end
 
   def test_json_payload_as_method_call
-    @parser.configure(:payload_type => :json)
+    @parser.configure(payload_type: :json)
 
     _, record = @parser.parse(@log_item)
     assert_equal(@log_item_decoded, record)
@@ -39,7 +39,7 @@ class RabbitMQJSONTraceParserTest < ::Test::Unit::TestCase
   end
 
   def test_json_payload_with_callback
-    @parser.configure(:payload_type => :json)
+    @parser.configure(payload_type: :json)
 
     @parser.parse(@log_item) do |_, record|
       assert_equal(@log_item_decoded, record)

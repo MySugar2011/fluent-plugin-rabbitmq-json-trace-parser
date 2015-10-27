@@ -5,20 +5,12 @@ module Fluent
     class RabbitMQJSONTraceParser < JSONParser
       Plugin.register_parser('rabbitmq_json_trace', self)
 
-      config_param :time_key, :string, :default => 'timestamp'
-      config_param :time_format, :string, :default => '%Y-%m-%d %H:%M:%S:%L'
-      config_param :payload_type, :enum, :default => :base64, :list => [:json, :base64]
+      config_param :time_key, :string, default: 'timestamp'
+      config_param :time_format, :string, default: '%Y-%m-%d %H:%M:%S:%L'
+      config_param :payload_type, :enum, default: :base64, list: [:json, :base64]
 
       def parse(text)
-        record = Yajl.load(text)
-
-        record['payload'] = ::Base64.decode64(record['payload'])
-
-        if @payload_type == :json
-          record['payload'] = Yajl.load(record['payload'])
-        end
-
-        time = get_time(record)
+        time, record = process(text)
 
         if block_given?
           yield time, record
@@ -35,6 +27,18 @@ module Fluent
 
       private
 
+      def process(text)
+        record = Yajl.load(text)
+
+        record['payload'] = ::Base64.decode64(record['payload'])
+
+        if @payload_type == :json
+          record['payload'] = Yajl.load(record['payload'])
+        end
+
+        [get_time(record), record]
+      end
+
       def get_time(record)
         value = @keep_time_key ? record[@time_key] : record.delete(@time_key)
 
@@ -45,7 +49,9 @@ module Fluent
             begin
               value.to_i
             rescue => e
-              raise ParserError, "invalid time value: value = #{value}, error_class = #{e.class.name}, error = #{e.message}"
+              raise ParserError, "invalid time value: value = #{value},"\
+                                 "error_class = #{e.class.name},"\
+                                 "error = #{e.message}"
             end
           end
         elsif @estimate_current_event
