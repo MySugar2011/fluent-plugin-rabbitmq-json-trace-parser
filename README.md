@@ -35,8 +35,9 @@ Or install it yourself as:
 ```
 
 You can use two values for `payload_type`:
+
 1. `base64` (default) — to decode payload from Base64 to something meaningful
-1. `json` — to decode payload from Base64 and then treat it like a JSON object
+2. `json` — to decode payload from Base64 and then treat it like a JSON object
 
 ## Contributing
 
