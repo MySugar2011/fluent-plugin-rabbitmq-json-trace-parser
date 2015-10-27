@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Max Riveiro']
   spec.email         = %w(kavu13@gmail.com)
 
-  spec.summary       = 'TODO: Write a short summary, because Rubygems requires one.'
-  spec.description   = 'TODO: Write a longer description or delete this line.'
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = 'Fluentd Parser plugin for RabbitMQ Trace log in JSON format.'
+  spec.description   = 'Fluentd Parser plugin for RabbitMQ Trace log in JSON format.'
+  spec.homepage      = 'https://github.com/kavu/fluent-plugin-rabbitmq-json-trace-parser'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^test/}) }
